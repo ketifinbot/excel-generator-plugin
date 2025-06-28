@@ -1,20 +1,7 @@
-# Use Node.js 18
 FROM node:18-alpine
-
-# Set working directory
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
+WORKDIR /opt/render/project/src
+COPY src/package*.json ./
 RUN npm install
-
-# Copy source code
-COPY . .
-
-# Expose port
+COPY src/ ./
 EXPOSE 3000
-
-# Start the application
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
